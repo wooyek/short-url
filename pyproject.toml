@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "short-url"
+version = "0.1.0"
+description = ""
+authors = ["Janusz Skonieczny <git.js@bravelabs.pl>"]
+packages = [
+    { include = "*", from = "src" },
+]
+
+[tool.pytest.ini_options]
+addopts = "-ra --color=yes -vv"
+log_level = "DEBUG"
+asyncio_mode = "auto"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+hhc = "^3.0.2"
+fastapi = "^0.80.0"
+uvicorn = {extras = ["standard"], version = "^0.18.2"}
+py-redis = "^1.1.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.1.2"
+mockredispy = "^2.9.3"
+types-redis = "^4.3.17"
+pytest-asyncio = "^0.19.0"
+pytest-dotenv = "^0.5.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

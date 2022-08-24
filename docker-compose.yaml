@@ -1,0 +1,23 @@
+version: '3.3'
+services:
+    shorts-redis:
+        image: bitnami/redis:latest
+        environment:
+            - REDIS_PASSWORD=public
+        ports:
+            - '6379:6379'
+        volumes:
+            - redis-data:/bitnami/redis/data
+
+    shorts-web:
+        image: shorts
+        environment:
+            - REDIS_PASSWORD=public
+            - SHORTS_REDIS_MASTER_SERVICE_HOST=shorts-redis-master
+        links:
+            - "shorts-redis:shorts-redis-master"
+        ports:
+            - '80:80'
+
+volumes:
+    redis-data: { }
